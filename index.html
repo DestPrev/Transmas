@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Toolkit — Bien prendre ses heures de délégation (CSE / SSCT)</title>
+<style>
+:root{
+  --teal:#1F7078; --teal-d:#155159; --teal-l:#E8F4F5;
+  --ink:#1d2b2e; --muted:#5a6b6e; --line:#d7e3e4; --bg:#f6fafa;
+  --green:#1f7a44; --green-l:#e6f4ec; --red:#a3271f; --red-l:#fbeae8;
+  --amber:#8a5a00; --amber-l:#fdf3e0; --blue:#1f5a8a; --blue-l:#e8f1fb;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:var(--ink);background:var(--bg);line-height:1.6}
+a{color:var(--teal-d)}
+header.top{background:linear-gradient(135deg,var(--teal),var(--teal-d));color:#fff;padding:38px 22px 30px}
+.wrap{max-width:1000px;margin:0 auto;padding:0 18px}
+header.top h1{margin:0 0 6px;font-size:1.85rem;letter-spacing:.3px}
+header.top p{margin:0;opacity:.92;font-size:1.02rem}
+.badge{display:inline-block;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.35);padding:3px 10px;border-radius:999px;font-size:.78rem;margin-top:12px}
+nav.toc{position:sticky;top:0;z-index:20;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 1px 6px rgba(0,0,0,.04)}
+nav.toc .wrap{display:flex;flex-wrap:wrap;gap:6px;padding:10px 18px}
+nav.toc a{font-size:.82rem;text-decoration:none;color:var(--teal-d);background:var(--teal-l);padding:5px 11px;border-radius:7px;border:1px solid var(--line)}
+nav.toc a:hover{background:var(--teal);color:#fff}
+section{background:#fff;border:1px solid var(--line);border-radius:14px;padding:24px 26px;margin:22px 0;box-shadow:0 1px 4px rgba(0,0,0,.03)}
+section h2{color:var(--teal);margin:0 0 4px;font-size:1.35rem;display:flex;align-items:center;gap:10px}
+.num{background:var(--teal);color:#fff;width:30px;height:30px;border-radius:8px;display:inline-flex;align-items:center;justify-content:center;font-size:.95rem;flex:none}
+section h3{color:var(--teal-d);margin:22px 0 8px;font-size:1.08rem}
+.lead{color:var(--muted);margin-top:2px}
+.callout{border-radius:11px;padding:14px 16px;margin:14px 0;border:1px solid}
+.c-law{background:var(--teal-l);border-color:#bfe0e2}
+.c-yes{background:var(--green-l);border-color:#bfe3cd}
+.c-no{background:var(--red-l);border-color:#f0c8c3}
+.c-warn{background:var(--amber-l);border-color:#eedcae}
+.c-ex{background:var(--blue-l);border-color:#c8ddf2}
+.callout .tag{font-weight:700;font-size:.78rem;text-transform:uppercase;letter-spacing:.5px;display:block;margin-bottom:4px}
+.c-law .tag{color:var(--teal-d)} .c-yes .tag{color:var(--green)} .c-no .tag{color:var(--red)} .c-warn .tag{color:var(--amber)} .c-ex .tag{color:var(--blue)}
+blockquote.art{border-left:4px solid var(--teal);background:#fbfdfd;margin:12px 0;padding:10px 16px;font-style:italic;color:#33464a;border-radius:0 8px 8px 0}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:14px 0}
+@media(max-width:760px){.grid2{grid-template-columns:1fr}nav.toc{position:static}}
+.panel{border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.panel .ph{padding:12px 16px;font-weight:700;color:#fff}
+.panel.elu .ph{background:var(--blue)} .panel.emp .ph{background:var(--teal-d)}
+.panel .pb{padding:14px 16px}
+.panel ul{margin:8px 0;padding-left:20px}
+.kv{display:flex;gap:8px;margin:6px 0;font-size:.95rem}
+.kv b{color:var(--teal-d)}
+table{border-collapse:collapse;width:100%;margin:14px 0;font-size:.92rem}
+th,td{border:1px solid var(--line);padding:8px 10px;text-align:left}
+th{background:var(--teal);color:#fff;font-weight:600}
+tbody tr:nth-child(even){background:#f4fafa}
+.scenario{border:1px solid var(--line);border-radius:12px;padding:0;margin:12px 0;overflow:hidden}
+.scenario .sh{background:var(--teal-l);padding:11px 16px;font-weight:700;color:var(--teal-d)}
+.scenario .sb{padding:12px 16px}
+.scenario .verdict{display:inline-block;font-size:.8rem;font-weight:700;padding:2px 9px;border-radius:6px;margin-right:6px}
+.v-elu{background:var(--blue-l);color:var(--blue)} .v-emp{background:var(--teal-l);color:var(--teal-d)}
+.argcard{background:var(--ink);color:#fff;border-radius:11px;padding:14px 18px;margin:10px 0;position:relative}
+.argcard:before{content:"« ";color:var(--teal-l);font-size:1.4rem;font-weight:700}
+.argcard .ref{display:block;margin-top:6px;font-size:.8rem;color:#9fc7ca;font-style:italic}
+.juri{border:1px solid var(--line);border-left:4px solid var(--teal);border-radius:0 10px 10px 0;padding:12px 16px;margin:12px 0;background:#fbfdfd}
+.juri .jt{font-weight:700;color:var(--teal-d)}
+.pill{display:inline-block;font-size:.72rem;background:var(--teal-l);color:var(--teal-d);border-radius:6px;padding:2px 8px;margin-left:6px}
+.steps{counter-reset:s;list-style:none;padding:0;margin:10px 0}
+.steps li{position:relative;padding:10px 0 10px 46px;border-bottom:1px dashed var(--line)}
+.steps li:last-child{border-bottom:none}
+.steps li:before{counter-increment:s;content:counter(s);position:absolute;left:0;top:10px;background:var(--teal);color:#fff;width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700}
+footer{color:var(--muted);font-size:.85rem;text-align:center;padding:26px 18px 50px}
+.disc{background:#fff;border:1px dashed var(--line);border-radius:10px;padding:12px 16px;font-size:.85rem;color:var(--muted);margin-top:16px}
+ul.clean{list-style:none;padding-left:0}
+ul.clean li{padding:5px 0 5px 26px;position:relative}
+ul.clean li:before{content:"✓";position:absolute;left:0;color:var(--teal);font-weight:700}
+ul.no li:before{content:"✗";color:var(--red)}
+code{background:#eef5f5;padding:1px 6px;border-radius:5px;font-size:.88em}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <h1>Bien prendre ses heures de délégation</h1>
+    <p>Toolkit pratique pour les élus du CSE et de la CSSCT — droits, règles, jurisprudence et arguments</p>
+    <span class="badge">Support de formation · Destination Prévention</span>
+  </div>
+</header>
+
+<nav class="toc"><div class="wrap">
+  <a href="#principe">1· Le principe</a>
+  <a href="#quand">2· Pendant / hors travail</a>
+  <a href="#elu">3· À l'initiative de l'élu</a>
+  <a href="#employeur">4· À l'initiative de l'employeur</a>
+  <a href="#credit">5· Crédit, report, mutualisation</a>
+  <a href="#delai">6· Délais</a>
+  <a href="#bon">7· Le bon de délégation</a>
+  <a href="#manager">8· Face au manager</a>
+  <a href="#scenarios">9· Exemples concrets</a>
+  <a href="#juri">10· Jurisprudence</a>
+  <a href="#regl">11· Réglementation</a>
+  <a href="#blocage">12· En cas de blocage</a>
+</div></nav>
+
+<div class="wrap">
+
+<section id="principe">
+  <h2><span class="num">1</span> Le principe : un droit, pas une faveur</h2>
+  <p class="lead">L'heure de délégation se prend pour exercer le mandat. Elle prime sur l'activité de travail : c'est au service de s'organiser autour, et non à l'élu de « faire son travail d'abord ».</p>
+  <div class="callout c-law"><span class="tag">Texte fondateur — art. L2315-10 du Code du travail</span>
+  « Le temps passé en délégation est de plein droit considéré comme temps de travail et payé à l'échéance normale. L'employeur qui entend contester l'utilisation faite des heures de délégation saisit le juge judiciaire. »</div>
+  <h3>Ce que cela implique concrètement</h3>
+  <ul class="clean">
+    <li><b>Temps de travail effectif</b> : les heures sont payées comme du travail normal, à la date habituelle de la paie.</li>
+    <li><b>Présomption de bonne utilisation</b> : les heures sont présumées utilisées conformément au mandat. Ce n'est pas à l'élu de se justifier à l'avance.</li>
+    <li><b>Paiement d'abord, contestation ensuite</b> : si l'employeur soupçonne un usage non conforme, il doit <b>payer</b>, puis saisir le juge — jamais l'inverse. Le contrôle est uniquement <b>a posteriori</b>.</li>
+    <li><b>Aucune autorisation préalable</b> n'est nécessaire pour prendre ses heures.</li>
+  </ul>
+</section>
+
+<section id="quand">
+  <h2><span class="num">2</span> Les heures se prennent pendant <em>et</em> hors du temps de travail</h2>
+  <p class="lead">Le mandat ne s'arrête pas à l'horaire de travail. Les heures de délégation peuvent être utilisées aussi bien sur le temps de travail qu'en dehors.</p>
+  <div class="grid2">
+    <div class="callout c-yes"><span class="tag">Pendant les heures de travail</span>
+    L'élu quitte son poste pour exercer son mandat. Le temps est rémunéré normalement et décompté du crédit. Aucune perte de salaire.</div>
+    <div class="callout c-yes"><span class="tag">Hors des heures de travail</span>
+    Les heures prises en dehors de l'horaire habituel (réunion le soir, déplacement, contact d'un collègue d'une autre équipe…) restent du temps de travail effectif et doivent être <b>payées en plus</b> du salaire normal.</div>
+  </div>
+  <div class="callout c-warn"><span class="tag">Confirmé par la Cour de cassation</span>
+  Les heures de délégation sont du temps de travail « <b>qu'elles soient prises pendant ou hors les heures habituelles de travail</b> » et doivent être payées à l'échéance normale (Cass. soc. 10 juin 2026, n° 24-15.993). Le dépassement de l'horaire normal ouvre droit à paiement (le cas échéant en heures supplémentaires).</div>
+  <div class="callout c-ex"><span class="tag">Exemple</span>
+  Un conducteur élu finit sa tournée à 17 h. À 18 h, il rencontre des collègues de l'équipe du soir au titre de son mandat pendant 1 h. Cette heure, hors de son horaire, est du temps de travail à payer — elle ne « disparaît » pas parce qu'elle est en dehors du planning.</div>
+</section>
+
+<section id="elu">
+  <h2><span class="num">3</span> Cas n° 1 — Déplacements à l'initiative de l'ÉLU</h2>
+  <p class="lead">L'élu décide lui-même d'aller exercer son mandat : visiter un site, rencontrer des salariés, enquêter, préparer une réunion. C'est l'usage « ordinaire » des heures de délégation.</p>
+  <div class="panel elu">
+    <div class="ph">Régime applicable</div>
+    <div class="pb">
+      <div class="kv"><b>Temps :</b> imputé sur le crédit d'heures de délégation (trajet compris quand le déplacement fait partie de la mission). Payé comme temps de travail, mais décompté du crédit mensuel.</div>
+      <div class="kv"><b>Liberté de circulation :</b> l'élu peut se déplacer hors de l'entreprise pendant ses heures, et circuler librement dans l'entreprise (y compris hors de ses heures de travail) pour contacter les salariés à leur poste, sans gêne importante au travail (art. L2315-14).</div>
+      <div class="kv"><b>Transport :</b> en principe à la charge du CSE, sur son <b>budget de fonctionnement</b> (subvention de 0,20 % de la masse salariale, art. L2315-61, à partir de 50 salariés), <b>sauf</b> accord d'entreprise ou usage plus favorable.</div>
+    </div>
+  </div>
+  <div class="callout c-ex"><span class="tag">Exemple concret — deux sites (ex. Toulouse / Bordeaux)</span>
+  Un élu de Toulouse décide, de sa propre initiative, d'aller sur le site de Bordeaux rencontrer les salariés. → Le temps (trajet inclus) s'impute sur ses heures de délégation ; le coût du déplacement est pris en charge par le CSE sur son budget de fonctionnement, sauf accord prévoyant la prise en charge par l'employeur.</div>
+</section>
+
+<section id="employeur">
+  <h2><span class="num">4</span> Cas n° 2 — Réunions / missions à l'initiative de l'EMPLOYEUR</h2>
+  <p class="lead">Réunion plénière du CSE, réunion de la CSSCT, enquête après un accident grave, expertise convoquée par l'employeur… Le régime est <b>plus favorable</b> et totalement distinct du cas précédent.</p>
+  <div class="panel emp">
+    <div class="ph">Régime applicable</div>
+    <div class="pb">
+      <div class="kv"><b>Temps :</b> ce n'est <b>PAS</b> du temps de délégation et il <b>ne s'impute jamais</b> sur le crédit d'heures (art. L2315-11). Le temps de réunion est payé comme temps de travail.</div>
+      <div class="kv"><b>Temps de trajet :</b> pendant l'horaire de travail → payé normalement. Hors horaire et dépassant le temps normal domicile-travail → la part excédentaire est payée comme temps de travail (Cass. soc. 28 mars 2000, n° 97-42.892).</div>
+      <div class="kv"><b>Transport :</b> à la charge de <b>l'employeur</b>. Ces frais ne s'imputent pas sur le budget du CSE.</div>
+    </div>
+  </div>
+  <div class="callout c-warn"><span class="tag">Attention — délit d'entrave</span>
+  Refuser de prendre en charge les frais de déplacement d'élus d'un site éloigné convoqués à une réunion (ex. élus de Bordeaux convoqués à Toulouse) constitue un <b>délit d'entrave</b> (Cass. crim. 22 nov. 2005, n° 04-87.451, Bull. crim. n° 307).</div>
+  <div class="callout c-law"><span class="tag">Art. L2315-11 — temps payé et NON déduit du crédit</span>
+  Sont payés comme temps de travail et ne sont pas déduits des heures de délégation : la recherche de mesures en cas de danger grave et imminent, le temps passé aux <b>réunions du comité et de ses commissions</b> (dans une limite fixée par accord/décret), et les enquêtes après accident grave.</div>
+</section>
+
+<section id="credit">
+  <h2><span class="num">5</span> Le crédit d'heures, le report et la mutualisation</h2>
+  <h3>Le crédit mensuel selon l'effectif (art. R2314-1)</h3>
+  <table>
+    <thead><tr><th>Effectif</th><th>Titulaires</th><th>Heures / mois / titulaire</th></tr></thead>
+    <tbody>
+      <tr><td>11 à 24</td><td>1</td><td>10 h</td></tr>
+      <tr><td>25 à 49</td><td>2</td><td>10 h</td></tr>
+      <tr><td>50 à 74</td><td>4</td><td>18 h</td></tr>
+      <tr><td>75 à 99</td><td>5</td><td>19 h</td></tr>
+      <tr><td>100 à 149</td><td>6 à 7</td><td>21 h</td></tr>
+      <tr><td>200 à 499</td><td>10 à 12</td><td>22 h</td></tr>
+      <tr><td>500 à 1499</td><td>13 à 18</td><td>24 h</td></tr>
+    </tbody>
+  </table>
+  <p>Le crédit peut être <b>augmenté en cas de circonstances exceptionnelles</b>. Un accord peut prévoir un volume différent.</p>
+  <div class="grid2">
+    <div class="callout c-law"><span class="tag">Report — art. R2315-5</span>
+    Les heures peuvent être cumulées d'un mois sur l'autre dans la limite de <b>12 mois</b>, sans dépasser <b>1,5 fois</b> le crédit mensuel. Pour utiliser les heures cumulées, l'élu informe l'employeur <b>au plus tard 8 jours avant</b>.</div>
+    <div class="callout c-law"><span class="tag">Mutualisation — art. R2315-6</span>
+    Les titulaires peuvent répartir/donner des heures entre eux et avec les suppléants. L'employeur doit en être informé <b>au plus tard 8 jours avant</b> l'utilisation.</div>
+  </div>
+</section>
+
+<section id="delai">
+  <h2><span class="num">6</span> Quel délai pour poser ses heures ?</h2>
+  <div class="callout c-yes"><span class="tag">Heures du crédit mensuel normal</span>
+  <b>Aucun délai légal</b> n'est imposé, et aucune autorisation n'est requise. Un délai de prévenance « raisonnable » (souvent 24-48 h) peut être organisé par accord/usage <b>uniquement</b> pour permettre l'organisation du service ; il ne peut jamais faire obstacle au mandat, et l'<b>urgence</b> en dispense.</div>
+  <div class="callout c-warn"><span class="tag">Seul délai réellement prévu par les textes : 8 jours</b></span>
+  Il ne concerne que les heures <b>reportées</b> (R2315-5) et <b>mutualisées</b> (R2315-6) : information de l'employeur au plus tard 8 jours avant.</div>
+  <div class="callout c-no"><span class="tag">À retenir</span>
+  Un bon de délégation remis en retard — voire l'absence de bon — <b>ne prive pas du paiement</b> des heures prises dans la limite du crédit (Cass. soc. 10 juin 2026, n° 24-15.993 : paiement dû « peu important l'absence d'utilisation a priori des bons de délégation et la remise tardive de ces bons »).</div>
+</section>
+
+<section id="bon">
+  <h2><span class="num">7</span> Le « bon de délégation » : information, pas autorisation</h2>
+  <p class="lead">L'employeur peut mettre en place des bons de délégation, mais leur seul but légitime est d'<b>informer</b> pour organiser le travail.</p>
+  <div class="grid2">
+    <div class="panel"><div class="ph" style="background:var(--green)">Ce que le bon PEUT être</div><div class="pb">
+      <ul class="clean">
+        <li>Un outil d'information préalable (départ, heure de retour).</li>
+        <li>Un moyen d'éviter la désorganisation du service.</li>
+        <li>Un suivi du décompte des heures.</li>
+      </ul></div></div>
+    <div class="panel"><div class="ph" style="background:var(--red)">Ce que le bon NE PEUT PAS être</div><div class="pb">
+      <ul class="clean no">
+        <li>Une demande d'autorisation.</li>
+        <li>Un contrôle a priori de l'objet de la mission.</li>
+        <li>Une condition au paiement des heures.</li>
+        <li>Un motif pour empêcher le départ.</li>
+      </ul></div></div>
+  </div>
+  <div class="callout c-ex"><span class="tag">Bon usage côté élu</span>
+  Indiquer la date, l'heure de départ et de retour — <b>sans détailler l'objet</b> de la mission (confidentialité du mandat).</div>
+</section>
+
+<section id="manager">
+  <h2><span class="num">8</span> Argumentaire face au manager</h2>
+  <h3>Ce que le manager NE PEUT PAS faire</h3>
+  <ul class="clean no">
+    <li>Exiger une autorisation préalable.</li>
+    <li>Imposer de « finir le travail d'abord » ou refuser le départ.</li>
+    <li>Refuser, différer ou conditionner le paiement.</li>
+    <li>Contrôler a priori l'usage des heures.</li>
+    <li>Sanctionner l'élu qui prend ses heures (risque de délit d'entrave, 7 500 € — art. L2317-1 — et de discrimination syndicale).</li>
+  </ul>
+  <h3>Ce que le manager PEUT faire</h3>
+  <ul class="clean">
+    <li>Demander une information de départ/retour pour organiser le service.</li>
+    <li>Mettre en place des bons de délégation (information, pas autorisation).</li>
+    <li>Contester l'usage des heures — mais seulement <b>après paiement</b>, devant le juge.</li>
+  </ul>
+  <h3>Phrases « minute » à mémoriser</h3>
+  <div class="argcard">Mes heures de délégation sont du temps de travail payé à l'échéance — c'est l'article L2315-10.<span class="ref">— droit au paiement à l'échéance</span></div>
+  <div class="argcard">Je n'ai pas à demander d'autorisation : le bon sert à vous informer pour organiser le service, pas à m'autoriser.<span class="ref">— pas d'autorisation préalable</span></div>
+  <div class="argcard">Vous pouvez contester l'usage que j'en fais, mais seulement après les avoir payées, devant le juge.<span class="ref">— contrôle a posteriori uniquement</span></div>
+  <div class="argcard">M'empêcher de les prendre, c'est un délit d'entrave puni par l'article L2317-1.<span class="ref">— sanction pénale : 7 500 €</span></div>
+</section>
+
+<section id="scenarios">
+  <h2><span class="num">9</span> Exemples concrets (scénarios)</h2>
+
+  <div class="scenario"><div class="sh">« Mon chef me dit de finir ma tournée avant de prendre mes heures »</div>
+  <div class="sb"><span class="verdict v-elu">Initiative élu</span> Le mandat prime. Le service doit s'organiser autour de la délégation, pas l'inverse. L'élu peut partir après simple information (si un bon existe), sans attendre un « accord ».</div></div>
+
+  <div class="scenario"><div class="sh">« On me dit qu'on ne paiera pas car je n'ai pas rendu le bon à temps »</div>
+  <div class="sb"><span class="verdict v-elu">Initiative élu</span> Les heures prises dans la limite du crédit sont dues, même bon remis en retard ou absent (Cass. soc. 10 juin 2026, n° 24-15.993). L'employeur paie, puis conteste éventuellement devant le juge.</div></div>
+
+  <div class="scenario"><div class="sh">« La réunion CSE convoquée par la direction est à 80 km, qui paie ? »</div>
+  <div class="sb"><span class="verdict v-emp">Initiative employeur</span> Le temps de réunion et de trajet n'est pas déduit du crédit ; le trajet hors horaire dépassant le trajet habituel est payé ; le transport est à la charge de l'employeur. Le refuser = entrave.</div></div>
+
+  <div class="scenario"><div class="sh">« Je veux rencontrer des collègues de l'équipe de nuit »</div>
+  <div class="sb"><span class="verdict v-elu">Initiative élu</span> Possible, y compris hors de ses propres heures de travail (art. L2315-14). Le temps est du temps de travail à payer ; il s'impute sur le crédit, sauf cas de l'art. L2315-11.</div></div>
+
+  <div class="scenario"><div class="sh">« J'ai épuisé mon crédit ce mois-ci mais une situation urgente survient »</div>
+  <div class="sb"><span class="verdict v-elu">Initiative élu</span> En cas de circonstances exceptionnelles, le crédit peut être dépassé (R2314-1). Possibilité aussi de mobiliser le report (R2315-5) ou la mutualisation (R2315-6), avec information 8 jours avant.</div></div>
+
+  <div class="scenario"><div class="sh">« Une enquête doit être menée après un accident grave »</div>
+  <div class="sb"><span class="verdict v-emp">Hors crédit</span> Le temps passé à l'enquête après accident grave est payé comme temps de travail et n'est <b>pas</b> déduit des heures de délégation (art. L2315-11).</div></div>
+</section>
+
+<section id="juri">
+  <h2><span class="num">10</span> Jurisprudence clé</h2>
+  <div class="juri"><div class="jt">Cass. soc. 10 juin 2026, n° 24-15.993 <span class="pill">entreprise de transport</span></div>
+  Les heures de délégation sont du temps de travail « qu'elles soient prises pendant ou hors les heures habituelles de travail » et payées à l'échéance ; l'employeur ne peut contester l'usage « qu'après les avoir payées » ; paiement dû malgré la remise tardive ou l'absence de bon de délégation.
+  <br><a href="https://www.legifrance.gouv.fr/juri/id/JURITEXT000054293570" target="_blank" rel="noopener">Voir sur Légifrance →</a></div>
+
+  <div class="juri"><div class="jt">Cass. crim. 22 nov. 2005, n° 04-87.451 (Bull. crim. n° 307)</div>
+  Les frais de déplacement aux réunions organisées à l'initiative de l'employeur restent à sa charge et ne s'imputent pas sur le budget de fonctionnement ; le refus pour des élus de sites éloignés constitue un délit d'entrave.
+  <br><a href="https://www.legifrance.gouv.fr/juri/id/JURITEXT000007071256" target="_blank" rel="noopener">Voir sur Légifrance →</a></div>
+
+  <div class="juri"><div class="jt">Cass. soc. 28 mars 2000, n° 97-42.892</div>
+  Le temps de trajet effectué hors de l'horaire de travail et dépassant le temps normal domicile-travail, pour se rendre à une réunion de l'instance, est dû par l'employeur comme temps de travail.
+  <br><a href="https://www.legifrance.gouv.fr/juri/id/JURITEXT000007407964" target="_blank" rel="noopener">Voir sur Légifrance →</a></div>
+</section>
+
+<section id="regl">
+  <h2><span class="num">11</span> Réglementation (Code du travail)</h2>
+  <ul>
+    <li><b>L2315-7</b> — crédit d'heures de délégation. <a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000035651230" target="_blank" rel="noopener">Légifrance</a></li>
+    <li><b>L2315-10</b> — temps de travail payé à l'échéance ; contestation devant le juge. <a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000035651234" target="_blank" rel="noopener">Légifrance</a></li>
+    <li><b>L2315-11</b> — temps payé et non déduit du crédit (réunions, enquêtes, danger grave). <a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000036262458" target="_blank" rel="noopener">Légifrance</a></li>
+    <li><b>L2315-14</b> — déplacement et libre circulation. <a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000035621169" target="_blank" rel="noopener">Légifrance</a></li>
+    <li><b>L2315-61</b> — budget de fonctionnement du CSE (0,20 % / 0,22 %). <a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000036761916" target="_blank" rel="noopener">Légifrance</a></li>
+    <li><b>L2317-1</b> — délit d'entrave (7 500 €). <a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000035634273" target="_blank" rel="noopener">Légifrance</a></li>
+    <li><b>R2314-1</b> — tableau des crédits selon l'effectif. <a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000036481896" target="_blank" rel="noopener">Légifrance</a></li>
+    <li><b>R2315-5</b> — report des heures (12 mois, 1,5×, information 8 jours). <a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000036417721" target="_blank" rel="noopener">Légifrance</a></li>
+    <li><b>R2315-6</b> — mutualisation des heures (information 8 jours).</li>
+  </ul>
+</section>
+
+<section id="blocage">
+  <h2><span class="num">12</span> Que faire en cas de blocage ?</h2>
+  <ol class="steps">
+    <li>Rappeler par écrit (mail) l'article L2315-10 et la présomption de bonne utilisation.</li>
+    <li>Informer le secrétaire du CSE et, s'il existe, le délégué syndical.</li>
+    <li>Consigner les faits (dates, refus, témoins) et les heures non payées.</li>
+    <li>Saisir l'inspection du travail si le blocage persiste.</li>
+    <li>Saisir le conseil de prud'hommes pour le rappel de salaire — l'employeur doit payer d'abord, contester ensuite.</li>
+  </ol>
+</section>
+
+<div class="disc">Ce toolkit est un support pédagogique de synthèse à jour des sources citées (Code du travail et jurisprudence de la Cour de cassation). Il ne remplace pas une analyse juridique au cas par cas : un accord d'entreprise ou la convention collective peuvent prévoir des règles plus favorables. Vérifiez toujours l'accord applicable à votre entreprise.</div>
+
+</div>
+<footer>
+  Toolkit « Heures de délégation » — Destination Prévention · Formation CSE / SSCT
+</footer>
+</body>
+</html>
